@@ -1,4 +1,4 @@
-# `install` — Install R and dependencies
+# `install`: Install R and dependencies
 
 Sets up pandoc, R, and package dependencies. Wraps the `setup-pandoc`, `setup-r`, and `setup-r-dependencies` actions from [r-lib/actions](https://github.com/r-lib/actions) with sensible defaults, and adds support for pre-warmed container environments.
 
