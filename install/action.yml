@@ -67,29 +67,11 @@ runs:
     # cycle which reinstalls everything even when the container already has it.
     - name: Update R package dependencies (container)
       if: inputs.use-container == 'true'
-      shell: Rscript {0}
-      env:
-        GITHUB_PAT: ${{ inputs.token }}
-      run: |
-        # Replicate needs → Config/Needs/<field> expansion from r-lib/actions
-        needs_parts <- strsplit("${{ inputs.needs }}", "[[:space:],]+")[[1]]
-        needs_parts <- needs_parts[nzchar(needs_parts)]
-        needs <- sprintf("Config/Needs/%s", needs_parts)
-
-        extra_deps <- strsplit("${{ inputs.extra-packages }}", "[[:space:],]+")[[1]]
-        extra_deps <- extra_deps[nzchar(extra_deps)]
-
-        # Over-protect for strangeness in the container
-        if (!requireNamespace("pak", quietly = TRUE)) {
-          install.packages("pak")
-        }
-
-        pak::pak(
-          c("deps::.", extra_deps),
-          dependencies = c(needs, "all"),
-          upgrade = TRUE,
-          ask = FALSE
-        )
+      uses: api2r/actions/update-r-dependencies@v1
+      with:
+        token: ${{ inputs.token }}
+        needs: ${{ inputs.needs }}
+        extra-packages: ${{ inputs.extra-packages }}
 
     # Non-container path: standard setup-r-dependencies flow with caching.
     - name: Setup R package dependencies (non-container)
