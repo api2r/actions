@@ -2,7 +2,7 @@
 
 Sets up pandoc, R, and package dependencies. Wraps the `setup-pandoc`, `setup-r`, and `setup-r-dependencies` actions from [r-lib/actions](https://github.com/r-lib/actions) with sensible defaults, and adds support for pre-warmed container environments.
 
-#### Usage
+## Usage
 
 ```yaml
 - uses: api2r/actions/install@v1
@@ -10,7 +10,7 @@ Sets up pandoc, R, and package dependencies. Wraps the `setup-pandoc`, `setup-r`
     token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-#### Inputs
+## Inputs
 
 | Input | Description | Default |
 |---|---|---|
@@ -23,7 +23,7 @@ Sets up pandoc, R, and package dependencies. Wraps the `setup-pandoc`, `setup-r`
 | `cache-version` | Cache version for `r-lib/actions/setup-r-dependencies@v2` | `"1"` |
 | `use-container` | Set to `'true'` when running inside a pre-warmed container (skips R and pandoc setup) | `"false"` |
 
-#### Examples
+## Examples
 
 Standard workflow (installs R, pandoc, and all package dependencies with caching):
 
