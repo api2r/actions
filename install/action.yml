@@ -49,6 +49,17 @@ runs:
         http-user-agent: ${{ inputs.http-user-agent }}
         use-public-rspm: true
 
+    # In pre-warmed containers every package may already be in the system
+    # library, so nothing is ever written to R_LIBS_USER.  Ensure the
+    # directory exists with a sentinel so the actions/cache glob matches
+    # and the "Path Validation Error" warning doesn't fire at cache-save.
+    - name: Ensure R_LIBS_USER exists
+      shell: bash
+      run: |
+        lib="$(Rscript -e 'cat(Sys.getenv("R_LIBS_USER"))')"
+        mkdir -p "$lib"
+        touch "$lib/.keep"
+
     # Container path: call pak::pak() directly so it checks .libPaths() and
     # only installs/updates packages that are genuinely missing or outdated.
     # setup-r-dependencies always runs a full lockfile-create → lockfile-install

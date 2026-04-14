@@ -1,5 +1,5 @@
-name: "Update R package dependencies (container)"
-description: "Update missing or outdated R package dependencies inside a pre-warmed container using pak"
+name: "Update R package dependencies"
+description: "Update missing or outdated R package dependencies"
 inputs:
   token:
     description: "GitHub token"
@@ -17,17 +17,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    # In pre-warmed containers every package may already be in the system
-    # library, so nothing is ever written to R_LIBS_USER.  Ensure the
-    # directory exists with a sentinel so the actions/cache glob matches
-    # and the "Path Validation Error" warning doesn't fire at cache-save.
-    - name: Ensure R_LIBS_USER exists
-      shell: bash
-      run: |
-        lib="$(Rscript -e 'cat(Sys.getenv("R_LIBS_USER"))')"
-        mkdir -p "$lib"
-        touch "$lib/.keep"
-
     # Call pak::pak() directly so it checks .libPaths() and only
     # installs/updates packages that are genuinely missing or outdated.
     # setup-r-dependencies always runs a full lockfile-create → lockfile-install

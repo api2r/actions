@@ -1,6 +1,6 @@
-# `update-r-dependencies` — Update R package dependencies (container)
+# `update-r-dependencies`: Update R package dependencies
 
-Updates missing or outdated R package dependencies inside a pre-warmed container using [pak](https://pak.r-lib.org/). Calls `pak::pak()` directly so it checks `.libPaths()` and only installs or updates packages that are genuinely missing or outdated, rather than reinstalling everything from a lockfile.
+Updates missing or outdated R package dependencies using [pak](https://pak.r-lib.org/). Calls `pak::pak()` directly so it checks `.libPaths()` and only installs or updates packages that are genuinely missing or outdated, rather than reinstalling everything from a lockfile.
 
 ## Usage
 
