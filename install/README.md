@@ -30,7 +30,7 @@ Standard workflow (installs R, pandoc, and all package dependencies with caching
 ```yaml
 steps:
   - uses: actions/checkout@v6
-  - uses: api2r/actions/install@main
+  - uses: api2r/actions/install@v1
 ```
 
 With extra packages and a specific R version:
