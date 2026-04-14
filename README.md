@@ -27,7 +27,7 @@ adds support for pre-warmed container environments.
 | `http-user-agent` | HTTP user agent, passed to `r-lib/actions/setup-r@v2` | `""` |
 | `needs` | `Config/Needs` tag(s), passed to `r-lib/actions/setup-r-dependencies@v2` | `""` |
 | `extra-packages` | Extra packages, passed to `r-lib/actions/setup-r-dependencies@v2` | `""` |
-| `optional-packages` | Extra packages installed individually; failures are warnings, not errors | `""` |
+| `optional-packages` | Optional extra packages; installed individually, warn (not error) on failure | `""` |
 | `cache-version` | Cache version for `r-lib/actions/setup-r-dependencies@v2` | `"1"` |
 | `use-container` | Set to `'true'` when running inside a pre-warmed container (skips R and pandoc setup) | `"false"` |
 
