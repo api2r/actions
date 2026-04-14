@@ -6,14 +6,12 @@ Composite GitHub Actions for R-based repositories.
 
 ### `install` — Install R and dependencies
 
-Sets up pandoc, R, and package dependencies. Wraps
-[r-lib/actions](https://github.com/r-lib/actions) with sensible defaults and
-adds support for pre-warmed container environments.
+Sets up pandoc, R, and package dependencies. Wraps the `setup-pandoc`, `setup-r`, and `setup-r-dependencies` actions from [r-lib/actions](https://github.com/r-lib/actions) with sensible defaults, and adds support for pre-warmed container environments.
 
 #### Usage
 
 ```yaml
-- uses: api2r/actions/install@main
+- uses: api2r/actions/install@v1
   with:
     token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -37,7 +35,7 @@ Standard workflow (installs R, pandoc, and all package dependencies with caching
 
 ```yaml
 steps:
-  - uses: actions/checkout@v4
+  - uses: actions/checkout@v6
   - uses: api2r/actions/install@main
 ```
 
@@ -45,8 +43,8 @@ With extra packages and a specific R version:
 
 ```yaml
 steps:
-  - uses: actions/checkout@v4
-  - uses: api2r/actions/install@main
+  - uses: actions/checkout@v6
+  - uses: api2r/actions/install@v1
     with:
       r-version: "4.3"
       extra-packages: any::rmarkdown any::knitr
@@ -57,8 +55,8 @@ Inside a pre-warmed container (skips R/pandoc installation, updates only missing
 
 ```yaml
 steps:
-  - uses: actions/checkout@v4
-  - uses: api2r/actions/install@main
+  - uses: actions/checkout@v6
+  - uses: api2r/actions/install@v1
     with:
       use-container: "true"
 ```
