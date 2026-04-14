@@ -54,6 +54,7 @@ runs:
     # directory exists with a sentinel so the actions/cache glob matches
     # and the "Path Validation Error" warning doesn't fire at cache-save.
     - name: Ensure R_LIBS_USER exists
+      if: inputs.use-container == 'true'
       shell: bash
       run: |
         lib="$(Rscript -e 'cat(Sys.getenv("R_LIBS_USER"))')"
